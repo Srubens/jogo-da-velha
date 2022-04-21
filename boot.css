@@ -1,0 +1,58 @@
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+
+:root{
+	--bg-white: #fff;
+	--bg-gray: #eee;
+	--bg-blue: #4d94ff;
+}
+
+.container{
+	width: 100%;
+	max-width: 1080px;
+	height: 100vh;
+	margin: 0 auto;
+	display: grid;
+	justify-content: center;
+	text-align: center;
+}
+
+.box_game{
+	display: flex;
+}
+
+.square{
+	width: 160px;
+	font-size: 60px;
+	background: var(--bg-gray);
+	display: flex;
+	padding: 48px;
+	margin: 5px;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	color: var(--bg-gray);
+}
+
+.player,
+.winner{
+	font-size: 26px;
+	margin: 6px 0;
+}
+
+.btn-reset{
+	cursor: pointer;
+	width: 120px;
+	height: 30px;
+	background: var(--bg-blue);
+	border: none;
+	padding: 6px;
+	border-radius: 12px;
+	font-size: 18px;
+}

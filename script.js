@@ -1,54 +1,42 @@
-let player;
-let winner = null;
-let playerSelect = document.getElementById('jogador-selecionado')
-let winnerSelect = document.getElementById('vencedor-selecionado')
-let squares = document.getElementsByClassName('quadrado')
+let player
+let winner = null
+let playerSelect = document.querySelector('[data-js="player_select"]')
+let winnerSelect = document.querySelector('[data-js="winner_select"]')
+let squares = document.querySelectorAll('.square')
+let btn_reset = document.querySelector('[data-js="btn_reset"]')
 
-changePlayer('x')
+function choseSquare(){
+	squares.forEach((square, index) =>{
+		// console.log(square, index)
+		square.addEventListener('click', () =>{
+			if( winner !== null ){
+				return;
+			}
 
-/**
- * ESCOLHA DO QUADRADO VERIFICA SE VAI SER O 
- * X OU A BOLA
- */
-function chooseSquare(id){
+			if( square.innerHTML !== '-' ){
+				return;
+			}
+			square.innerHTML = player
+			square.style.color = "#000"
+			square.style.padding = "48px"
 
-	if(winner !== null){
-		return;
-	}
-
-	let square = document.getElementById(id)
-
-	if( square.innerHTML !== "-" ){
-		return;
-	}
-
-	square.innerHTML = player
-	square.style.color = "#000"
-	square.style.padding = "48px"
-
-	if( player == 'x' ){
-		player = 'o'
-	}else{
-		player = 'x'
-	}
-
-	changePlayer(player)
-	checkWinner()
-
-	console.log(square)
+			if( player == 'x' ){
+				player = 'o'
+			}else{
+				player = 'x'
+			}
+			changePlayer(player)
+			checkWinner()
+			console.log(index + 1)
+		})
+	})
 }
 
-/**
- * MUDA O JOGADOR
- */
 function changePlayer(value){
 	player = value
 	playerSelect.innerHTML = player
 }
 
-/**
- * VERIFICA SE EXEISTE UM VENCEDOR
- */
 function checkWinner(){
 	let square1 = document.getElementById('1')
 	let square2 = document.getElementById('2')
@@ -109,42 +97,32 @@ function checkWinner(){
 	}
 }
 
-/**
- * MUDANÇA NO VENCEDOR
- */
+function changeColorSquare(square1, square2, square3){
+	square1.style.background = "#0f0"
+	square2.style.background = "#0f0"
+	square3.style.background = "#0f0"
+}
+
 function changeWinner(square){
 	winner = square.innerHTML
 	winnerSelect.innerHTML = winner
 }
 
-/**
- * MUDA O BACKGROUND DOS QUADRADOS
- */
-function changeColorSquare(square1, square2, square3){
-	square1.style.background = "#0f0" 
-	square2.style.background = "#0f0" 
-	square3.style.background = "#0f0"
-}
-
-/**
- * VERIFICA SE A SEQUENCIA ESTA IGUAL 
- */
 function checkSequence(square1, square2, square3){
 	let isEqual = false
-	if( square1.innerHTML !== '-' && square1.innerHTML === square2.innerHTML && square2.innerHTML === square3.innerHTML ){
+	if(square1.innerHTML !== '-' && square1.innerHTML === square2.innerHTML && square2.innerHTML === square3.innerHTML){
 		isEqual = true
 	}
-
+	console.log(square1, square2, square3)
 	return isEqual
 }
 
-/**
- * PARA LIMPAR O JOGO
- */
+btn_reset.addEventListener('click', reset)
+
 function reset(){
-	winner = null 
+	winner = null
 	winnerSelect.innerHTML = ''
-	for(let i = 1; i <= 9; i++){
+	for(let i = 1; i <=9; i++){
 		let square = document.getElementById(i)
 		square.style.background = "#eee";
 		square.style.color = "#eee";
@@ -153,3 +131,5 @@ function reset(){
 	changePlayer('x')
 }
 
+changePlayer('x')
+choseSquare()
