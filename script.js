@@ -27,7 +27,7 @@ function choseSquare(){
 			}
 			changePlayer(player)
 			checkWinner()
-			console.log(index + 1)
+			// console.log(index + 1)
 		})
 	})
 }
@@ -113,7 +113,7 @@ function checkSequence(square1, square2, square3){
 	if(square1.innerHTML !== '-' && square1.innerHTML === square2.innerHTML && square2.innerHTML === square3.innerHTML){
 		isEqual = true
 	}
-	console.log(square1, square2, square3)
+	// console.log(square1, square2, square3)
 	return isEqual
 }
 
